@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_kishore2805_go_pipeline_sample_1727628600639-pr-trigger-input-set
+  identifier: Build_kishore2805_go_pipeline_sample_1727628600639prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: STC
+  pipeline:
+    identifier: Build_kishore2805_go_pipeline_sample_1727628600639
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
