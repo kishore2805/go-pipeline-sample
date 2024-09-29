@@ -14,6 +14,24 @@ pipeline:
             steps:
               - step:
                   type: Run
+                  name: Run with Test
+                  identifier: Run_with_Test
+                  spec:
+                    connectorRef: <+input>
+                    image: golang:1.15
+                    shell: Sh
+                    command: |-
+                      set +e
+                      go get gotest.tools/gotestsum
+                      gotestsum --format=standard-verbose --junitfile unit-tests.xml
+                      exit 0
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "*.xml"
+              - step:
+                  type: Run
                   name: Build App
                   identifier: Build_App
                   spec:
