@@ -25,15 +25,20 @@ pipeline:
                       go get gotest.tools/gotestsum
                       CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -tags netgo
                       exit 0
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - "*.xml"
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: account.harnessImage
-                    repo: stc
-                    tags:
-                      - latest
+                    connectorRef: <+input>
+                    repo: <+input>
+                    tags: <+input>
+                    caching: true
           platform:
             os: Linux
             arch: Amd64
